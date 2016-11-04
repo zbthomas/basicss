@@ -1,0 +1,44 @@
+// ====================================================================
+// Stepper
+// ====================================================================
+
+@mixin stepper($start, $finish, $selector, $rule){
+  @for $i from $start through $finish {
+    @if $rule == order {
+      $value: $i;
+      #{$selector}#{$value} {
+        order: $value;
+        -ms-box-ordinal: $value;
+      }
+    }
+    @else {
+      $value: $i + 1;
+      #{$selector}#{$value} {
+        #{$rule}: $value/10+rem;
+      }
+    }
+  }
+}
+
+// ====================================================================
+// Copycat
+// ====================================================================
+@mixin copycat($selectorPrefix, $rule, $value) {
+  .#{$selectorPrefix}#{$value} {
+    #{$rule}: #{$value};
+  }
+}
+
+// ====================================================================
+// Boxmod
+// ====================================================================
+@mixin boxmod($selectorPrefix, $selectorSuffix, $value) {
+  #{$selectorPrefix}#{$selectorSuffix} {
+    #{$selectorPrefix}: $value+px;
+    #{$selectorPrefix}: $value/10+rem;
+  }
+}
+
+// ====================================================================
+// columizer
+// ====================================================================
